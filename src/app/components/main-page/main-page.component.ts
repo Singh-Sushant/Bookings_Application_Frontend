@@ -34,6 +34,11 @@ export class MainPageComponent implements OnInit {
   }
 
 
+  navigateToUrl(){
+    this.router.navigate(['/userEvents'])
+  }
+
+
   onBookClicked(event : IEvent){
     this.dataSharing.sharedData = event;
     this.router.navigate(['/booking'])

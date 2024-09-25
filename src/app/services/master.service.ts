@@ -15,8 +15,12 @@ export class MasterService {
   }
 
   bookEvent(bookingData : any):Observable<IBookingResponse>{
-    console.log(bookingData)
+    // console.log(bookingData)
     return this.http.post<any>("http://localhost:5073/api/Bookings",bookingData)
+  }
+
+  getEventsForUser(email : string){
+    return this.http.get<any>(`http://localhost:5073/api/Bookings/${email}`)
   }
 
 }

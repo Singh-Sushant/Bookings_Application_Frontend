@@ -1,0 +1,33 @@
+
+<div class="container">
+    Enter Email : <input type="text" [(ngModel)]="userEmail" class="form-control">
+<button class="btn btn-primary mt-3" (click)="getEventsForUser()">Check</button>
+</div>
+
+@if(userEventDetails){
+    <div class="container mt-5">
+        <h2 class="text-center">Booking List</h2>
+        
+        <div *ngFor="let booking of userEventDetails" class="card mb-3">
+          <div class="card-header">
+            <h5>{{ booking.username }}'s Booking</h5>
+          </div>
+          <div class="card-body">
+            <p><strong>Email:</strong> {{ booking.email }}</p>
+            <p><strong>Phone Number:</strong> {{ booking.phoneNumber }}</p>
+            <p><strong>Number of Tickets:</strong> {{ booking.numberOfTickets }}</p>
+            <p><strong>Total Price:</strong> Rs.{{ booking.totalPrice }}</p>
+            
+            <h6>Event Details:</h6>
+            <ul>
+              <li><strong>Name:</strong> {{ booking.event.name }}</li>
+              <li><strong>Category:</strong> {{ booking.event.category }}</li>
+              <li><strong>Date & Time:</strong> {{ booking.event.dateTime | date:'fullDate' }} at {{ booking.event.dateTime | date:'shortTime' }}</li>
+              <li><strong>Venue:</strong> {{ booking.event.venue }}</li>
+              <li><strong>Artist:</strong> {{ booking.event.artist }}</li>
+              <li><strong>Description:</strong> {{ booking.event.description }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+}
