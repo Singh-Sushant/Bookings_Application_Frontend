@@ -1,7 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { IEvent } from '../../model/interface/event';
 import { MasterService } from '../../services/master.service';
-
+import { Router } from '@angular/router';
+import { DataSharingService } from '../../services/data-sharing.service';
+import { provideRouter } from '@angular/router';
 @Component({
   selector: 'app-main-page',
   standalone: true,
@@ -10,7 +12,12 @@ import { MasterService } from '../../services/master.service';
   styleUrl: './main-page.component.css'
 })
 export class MainPageComponent implements OnInit {
+
+  constructor(private dataSharing : DataSharingService , private router : Router){
+  }
+
   master = inject(MasterService)
+
   loader : boolean = true;
   allEvents : IEvent[] = []
 
@@ -27,7 +34,9 @@ export class MainPageComponent implements OnInit {
 
 
   onBookClicked(event : IEvent){
-      alert(event.artist)
+    this.dataSharing.sharedData = event;
+    this.router.navigate(['/booking'])
+    
   }
   
 }
