@@ -23,7 +23,7 @@ export class BookingFormComponent implements OnInit{
   eventId : string = ""
 
   bookingSuccessfull : string = ""
-  // totalPriceToDisplay : number = 0;
+  totalPriceToDisplay : number = 0;
   constructor(private dataSharing : DataSharingService){
    
   }
@@ -31,15 +31,26 @@ export class BookingFormComponent implements OnInit{
   ngOnInit(): void {
     
     this.eventDetails = this.dataSharing.sharedData
-    // console.log(this.eventDetails);
-    console.log(this.eventDetails.id);
-    
-    
+    // console.log(this.eventDetails);    
     this.eventId = this.eventDetails.id
-    // this.totalPriceToDisplay = this.eventDetails.ticketPrice * this.numberOfTickets
+
+    this.calculatePrice();
     
   }
   
+
+
+
+  calculatePrice(){
+    this.totalPriceToDisplay = this.eventDetails.ticketPrice*this.numberOfTickets;
+  }
+
+
+
+
+
+
+
   onSubmit(): void {
 
     // console.log(this.eventDetails);

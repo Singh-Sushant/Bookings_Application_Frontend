@@ -4,10 +4,11 @@ import { MasterService } from '../../services/master.service';
 import { Router } from '@angular/router';
 import { DataSharingService } from '../../services/data-sharing.service';
 import { provideRouter } from '@angular/router';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })

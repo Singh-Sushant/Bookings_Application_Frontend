@@ -1,32 +1,27 @@
-<p>main-page works!</p>
+<p class="text-center h3">Event Listings</p>
 
-@if(loader){
-    <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
+<div *ngIf="loader" class="text-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<div *ngIf="!loader" class="row m-3">
+  <div *ngFor="let item of allEvents; " class="col-md-4 col-sm-6 mb-4">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+        <p class="card-text">{{ item.description }}</p>
       </div>
-}
-@else {
-    <div class="row m-1">
-    @for (item of allEvents; track $index) {
-            <div class="card col-3 m-3 bg-light" style="width: 18rem;">
-                
-                <div class="card-body">
-                  <h5 class="card-title"><b>{{item.name}}</b></h5>
-                  <p class="card-text">{{item.description}}</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><b>Artist</b> : {{item.artist}}</li>
-                  <li class="list-group-item"><b>Date-Time</b> : {{item.dateTime}}</li>
-                  <li class="list-group-item"><b>Venue</b> : {{item.venue}}</li>
-                  <li class="list-group-item"><b>Price</b> : Rs.{{item.ticketPrice}}</li>
-
-                </ul>
-                <div class="card-body">
-                  <button class="btn btn-primary" (click)="onBookClicked(item)">Book</button>
-                   <!-- <a routerLink="/booking">Book</a> -->
-                </div>
-              </div>
-
-    }
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>Artist:</b> {{ item.artist }}</li>
+        <li class="list-group-item"><b>Date-Time:</b> {{ item.dateTime }}</li>
+        <li class="list-group-item"><b>Venue:</b> {{ item.venue }}</li>
+        <li class="list-group-item"><b>Price:</b> Rs.{{ item.ticketPrice }}</li>
+      </ul>
+      <div class="card-body text-center">
+        <button class="btn btn-primary" (click)="onBookClicked(item)">Book</button>
+      </div>
     </div>
-}
+  </div>
+</div>
