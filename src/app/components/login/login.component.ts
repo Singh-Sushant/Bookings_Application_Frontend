@@ -31,6 +31,10 @@ export class LoginComponent {
         localStorage.setItem('bookingEmail', response.email);
         localStorage.setItem('bookingPhoneNumber', response.phoneNumber);
         this.loginSuccess = 'success';
+
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 1000);
       },
       error => {
         console.error('Login failed', error);

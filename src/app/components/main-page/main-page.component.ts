@@ -25,6 +25,9 @@ export class MainPageComponent implements OnInit {
   loader : boolean = true;
   allEvents : IEvent[] = []
 
+  userInitial: string = '';
+  showUserMenu: boolean = false;
+
   ngOnInit(): void {
     this.master.getAllEvents().subscribe((res : IEvent[])=>{
       this.allEvents = res
@@ -36,6 +39,10 @@ export class MainPageComponent implements OnInit {
 
     if(localStorage.getItem('jwtToken') != null){
       this.loggedIn = true;
+      const userEmail= localStorage.getItem('bookingEmail');
+      if (userEmail) {
+        this.userInitial = userEmail.charAt(0).toUpperCase();
+      }
     }
     
   }
@@ -64,6 +71,16 @@ export class MainPageComponent implements OnInit {
   }
 
 
+
+
+
+  toggleUserMenu(): void {
+    this.showUserMenu = !this.showUserMenu;
+  }
+
+  goToChangePhoneNumber(): void {
+    this.router.navigate(['/change-phone-number']);
+  }
 
 
 }

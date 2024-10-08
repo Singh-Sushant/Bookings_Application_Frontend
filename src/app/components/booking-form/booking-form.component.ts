@@ -4,6 +4,7 @@ import { DataSharingService } from '../../services/data-sharing.service';
 import { CommonModule } from '@angular/common';
 import { MasterService } from '../../services/master.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booking-form',
@@ -34,7 +35,7 @@ export class BookingFormComponent implements OnInit{
   }
 
 
-  constructor(private dataSharing : DataSharingService){
+  constructor(private router : Router ,private dataSharing : DataSharingService){
    
   }
 
@@ -71,9 +72,9 @@ export class BookingFormComponent implements OnInit{
     // console.log(this.eventDetails);
     const bookingData = {
       username: this.username,   
-      email: localStorage.getItem('bookingEmail'),                        // comment
+      email: localStorage.getItem('bookingEmail'),                        
       numberOfTickets: this.numberOfTickets, 
-      phoneNumber : localStorage.getItem('bookingPhoneNumber'),           // comment
+      phoneNumber : localStorage.getItem('bookingPhoneNumber'),           
       totalPrice : this.numberOfTickets*this.eventDetails.ticketPrice,
       eventId : this.eventId
     };
@@ -86,7 +87,10 @@ export class BookingFormComponent implements OnInit{
       response => {
         console.log('Booking successful!', response);
         this.bookingSuccessfull = 'successfull'
-        // Handle success (e.g., navigate to confirmation page)
+        
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 1000);
       },
       error => {
         console.error('Error booking event', error);

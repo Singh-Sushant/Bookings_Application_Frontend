@@ -1,0 +1,34 @@
+.user-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .user-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgb(77, 77, 77);
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 4px;
+   
+    z-index: 1000;
+  }
+  
+  .menu-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .menu-item:hover {
+    background-color: #918f8f;
+    border: 1px solid #918f8f;
+  }

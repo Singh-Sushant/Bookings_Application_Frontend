@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <h3 class="border p-4">User Details</h3>
+    <div class="border p-4">
+        <p class="h5"><strong>Email : </strong> {{localStorageValues.bookingEmail}}</p>
+        <p class="h5"><strong>Phone Number : </strong> {{localStorageValues.bookingPhone}}</p>
+    </div>
+    <hr>
+
+    <h2>Change Phone Number</h2>
+    <form (ngSubmit)="onSubmit()" #phoneForm="ngForm">
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">New Phone Number</label>
+        <input 
+          type="tel" 
+          class="form-control" 
+          id="phoneNumber" 
+          name="phoneNumber" 
+          [(ngModel)]="phoneNumber" 
+          required 
+          pattern="[0-9]{10}"
+          #phone="ngModel">
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger mt-2">
+          <div *ngIf="phone.errors?.['required']">Phone number is required.</div>
+          <div *ngIf="phone.errors?.['pattern']">Phone number must be 10 digits.</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!phoneForm.form.valid">Update Phone Number</button>
+    </form>
+
+    <!-- Alert Messages -->
+    <div *ngIf="alertMessage" class="mt-3">
+      <div [ngClass]="{'alert-success': alertType === 'success', 'alert-danger': alertType === 'danger'}" class="alert" >
+        {{ alertMessage }}
+      </div>
+    </div>
+</div>
