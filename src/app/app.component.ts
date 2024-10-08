@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 
 import { MainPageComponent } from "./components/main-page/main-page.component";
-import { routes } from './app.routes';
+import  routes from './app.routes';
 import { BookingFormComponent } from './components/booking-form/booking-form.component';
 
 @Component({

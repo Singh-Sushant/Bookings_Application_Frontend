@@ -45,4 +45,12 @@ export class MainPageComponent implements OnInit {
     
   }
   
+  goToSignup():void{
+    this.router.navigate(['/signup'])
+  }
+  goToLogin():void{
+    this.router.navigate(['/login'])
+  }
+
+
 }

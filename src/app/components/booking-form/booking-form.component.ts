@@ -24,6 +24,13 @@ export class BookingFormComponent implements OnInit{
 
   bookingSuccessfull : string = ""
   totalPriceToDisplay : number = 0;
+
+  localStorageValues : any = {
+    bookingPhone : localStorage.getItem('BookingPhoneNumber'),
+    bookingEmail : localStorage.getItem('BookingEmail')
+  }
+
+
   constructor(private dataSharing : DataSharingService){
    
   }
@@ -54,12 +61,11 @@ export class BookingFormComponent implements OnInit{
   onSubmit(): void {
 
     // console.log(this.eventDetails);
-    
     const bookingData = {
-      username: this.username,
-      email: this.email,
-      numberOfTickets: this.numberOfTickets,
-      phoneNumber : this.phoneNumber,
+      username: this.username,   
+      email: localStorage.getItem('bookingEmail'),                        // comment
+      numberOfTickets: this.numberOfTickets, 
+      phoneNumber : localStorage.getItem('bookingPhoneNumber'),           // comment
       totalPrice : this.numberOfTickets*this.eventDetails.ticketPrice,
       eventId : this.eventId
     };

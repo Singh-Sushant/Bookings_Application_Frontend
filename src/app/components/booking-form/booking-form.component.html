@@ -18,7 +18,7 @@
 
         <div class="mb-3">
           <label for="email" class="form-label">Email:</label>
-          <input type="email" id="email" [(ngModel)]="email" name="userEmail" class="form-control" required>
+          <input type="email" id="email" [value]="localStorageValues.bookingEmail" name="userEmail" class="form-control" required>
         </div>
 
         <div class="mb-3">
@@ -28,7 +28,7 @@
 
         <div class="mb-3">
           <label for="phoneNumber" class="form-label">Phone Number:</label>
-          <input type="text" id="phoneNumber" [(ngModel)]="phoneNumber" name="phoneNumber" class="form-control" required>
+          <input type="text" id="phoneNumber" [value]="localStorageValues.bookingPhone" name="phoneNumber" class="form-control" required>
         </div>
 
         <h4>Total Price: Rs.{{ numberOfTickets * eventDetails.ticketPrice }}</h4>

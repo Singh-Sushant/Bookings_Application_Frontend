@@ -1,4 +1,13 @@
-<div class="btn btn-dark m-2 " (click)="navigateToUrl()">Check your bookings</div>
+<div class="d-flex justify-content-between">
+  <div class="btn btn-dark m-2 " (click)="navigateToUrl()">Check your bookings</div>
+
+  <div class="d-flex gap-3">
+
+    <div class="btn btn btn-outline-dark m-2" (click)="goToSignup()">Sign Up</div>
+    <div class="btn btn btn-outline-dark m-2" (click)="goToLogin()">Login</div>
+
+  </div>
+</div>
 <p class="text-center h3">Event Listings</p>
 
 <div *ngIf="loader" class="text-center">

@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between gap-5" (click)="goToLogin()">
+        <h2>Signup</h2>
+    <div class="btn btn-dark" >
+        Login
+    </div>
+    </div>
+    <form (ngSubmit)="onSignup()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" id="email" [(ngModel)]="email" name="email" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number:</label>
+        <input type="text" id="phoneNumber" [(ngModel)]="phoneNumber" name="phoneNumber" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+  
+    <div *ngIf="signupSuccess === 'success'" class="alert alert-success mt-3">
+      Signup Successful!
+    </div>
+    <div *ngIf="signupSuccess === 'failure'" class="alert alert-danger mt-3">
+      Signup Failed. Please try again.
+    </div>
+
+
+    
+  </div>
+  
