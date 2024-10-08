@@ -1,16 +1,14 @@
 
-<div class="container">
-    Enter Email : <input type="text" [(ngModel)]="userEmail" class="form-control">
-<button class="btn btn-primary mt-3" (click)="getEventsForUser()">Check</button>
-</div>
+
 
 @if(userEventDetails){
     <div class="container mt-5">
         <h2 class="text-center">Booking List</h2>
         
         <div *ngFor="let booking of userEventDetails" class="card mb-3">
-          <div class="card-header">
+          <div class="card-header d-flex justify-content-between">
             <h5>{{ booking.username }}'s Booking</h5>
+            <div class="btn btn-danger" (click)="cancelBooking(booking.id)">Cancel Booking</div>
           </div>
           <div class="card-body">
             <p><strong>Email:</strong> {{ booking.email }}</p>
@@ -30,4 +28,10 @@
           </div>
         </div>
       </div>
+}
+@else {
+  <div class=" d-flex justify-content-center align-items-center flex-column" style="height: 500px;" >
+    <h2 class="text-center ">No bookings available</h2>
+   <i> <p>Book an event  <a href="/main">here</a></p></i>
+  </div>
 }

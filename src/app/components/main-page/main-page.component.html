@@ -1,10 +1,18 @@
 <div class="d-flex justify-content-between">
-  <div class="btn btn-dark m-2 " (click)="navigateToUrl()">Check your bookings</div>
+  @if (loggedIn) {
+    <div class="btn btn-dark m-2 " (click)="navigateToUrl()">Check your bookings</div>
+  }@else {
+    <div class="h5 m-2">Login to see your bookings</div>
+  }
 
   <div class="d-flex gap-3">
 
     <div class="btn btn btn-outline-dark m-2" (click)="goToSignup()">Sign Up</div>
-    <div class="btn btn btn-outline-dark m-2" (click)="goToLogin()">Login</div>
+    @if(!loggedIn){
+      <div class="btn btn btn-outline-dark m-2" (click)="goToLogin()">Login</div>
+    }@else{
+      <div class="btn btn btn-outline-danger m-2" (click)="doLogout()">Logout</div>
+    }
 
   </div>
 </div>
@@ -24,7 +32,7 @@
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><b>Artist:</b> {{ item.artist }}</li>
-        <li class="list-group-item"><b>Date-Time:</b> {{ item.dateTime }}</li>
+        <li class="list-group-item"><b>Date-Time:</b> {{  item.dateTime | date:'fullDate' }} at {{ item.dateTime | date:'shortTime' }}</li>
         <li class="list-group-item"><b>Venue:</b> {{ item.venue }}</li>
         <li class="list-group-item"><b>Price:</b> Rs.{{ item.ticketPrice }}</li>
       </ul>

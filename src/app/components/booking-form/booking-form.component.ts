@@ -25,9 +25,12 @@ export class BookingFormComponent implements OnInit{
   bookingSuccessfull : string = ""
   totalPriceToDisplay : number = 0;
 
-  localStorageValues : any = {
-    bookingPhone : localStorage.getItem('BookingPhoneNumber'),
-    bookingEmail : localStorage.getItem('BookingEmail')
+  localStorageValues : {
+    bookingPhone : string|null,
+    bookingEmail : string|null
+  } = {
+    bookingPhone : "",
+    bookingEmail : ""
   }
 
 
@@ -37,6 +40,11 @@ export class BookingFormComponent implements OnInit{
 
   ngOnInit(): void {
     
+    //get values from local storage 
+    this.localStorageValues.bookingEmail = localStorage.getItem('bookingEmail')
+    this.localStorageValues.bookingPhone = localStorage.getItem('bookingPhoneNumber')
+
+
     this.eventDetails = this.dataSharing.sharedData
     // console.log(this.eventDetails);    
     this.eventId = this.eventDetails.id

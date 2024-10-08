@@ -19,6 +19,9 @@ export class MainPageComponent implements OnInit {
 
   master = inject(MasterService)
 
+
+  loggedIn : boolean = false;
+
   loader : boolean = true;
   allEvents : IEvent[] = []
 
@@ -30,6 +33,10 @@ export class MainPageComponent implements OnInit {
       alert("problem with apI")
       this.loader = false;
     });
+
+    if(localStorage.getItem('jwtToken') != null){
+      this.loggedIn = true;
+    }
     
   }
 
@@ -51,6 +58,12 @@ export class MainPageComponent implements OnInit {
   goToLogin():void{
     this.router.navigate(['/login'])
   }
+  doLogout():void{
+    localStorage.clear();
+    location.reload();
+  }
+
+
 
 
 }

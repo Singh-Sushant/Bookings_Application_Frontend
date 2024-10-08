@@ -14,26 +14,6 @@ export class MasterService {
     return this.http.get<IEvent[]>("http://localhost:5073/api/Events")
   }
 
-  // bookEvent(eventData : any):Observable<any>{
-  //   // console.log(bookingData)
-  //   const token = localStorage.getItem('jwtToken');
-  // if (!token) {
-  //   throw new Error('User not authenticated');
-  // }
-
-  // const headers = new HttpHeaders()
-  //     .set('Authorization', `Bearer ${token}`)
-  //     .set('Content-Type', 'application/json');
-
-
-
-  // console.log("\n");
-  // console.log(headers);
-  // console.log("\n");
-  
-  // return this.http.post(`http://localhost:5073/api/Bookings`, eventData, { headers });
-  // }
-
 
   bookEvent(eventData: any): Observable<any> {
     const token = localStorage.getItem('jwtToken');
@@ -43,19 +23,12 @@ export class MasterService {
 
     console.log(token);
     
-    const data={
-      "username": "aryan",
-      "email": "aryan@example.com",
-      "phoneNumber": "9090909090",
-      "numberOfTickets": 2,
-      "totalPrice": 300,
-      "eventId": "e4b1d89f-8272-4a2b-b8b8-2276f497912b"
-    }
+   
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${token}`)
 
 
-    return this.http.post(`http://localhost:5073/api/Bookings`, data, { headers })
+    return this.http.post(`http://localhost:5073/api/Bookings`, eventData, { headers })
       .pipe(
         tap(response => console.log('Response:', response)),
         catchError(this.handleError)
@@ -76,11 +49,7 @@ export class MasterService {
 
 
 
-
-
-
-
-  getEventsForUser(email : string){
+  getEventsForUser(email : string | null){
     const token = localStorage.getItem('jwtToken');
   if (!token) {
     throw new Error('User not authenticated');
@@ -97,6 +66,10 @@ export class MasterService {
 
   loginUser(data: any): Observable<any> {
     return this.http.post(`http://localhost:5073/api/Account/Login`, data);
+  }
+
+  cancelBooking(id:string) : Observable<any>{
+    return this.http.delete(`http://localhost:5073/api/Bookings/${id}`)
   }
 
 }
