@@ -1,9 +1,6 @@
-<div class="container mt-5">
+<div class="container mt-5 w-50 border p-5">
     <div class="d-flex justify-content-between gap-5" (click)="goToLogin()">
         <h2>Signup</h2>
-    <div class="btn btn-dark" >
-        Login
-    </div>
     </div>
     <form (ngSubmit)="onSignup()">
       <div class="mb-3">
@@ -20,6 +17,9 @@
       </div>
       <button type="submit" class="btn btn-primary">Sign Up</button>
     </form>
+    <div class="mt-4">
+      <i>Do not have an account? <a class="pointer" (click)="goToLogin()">Signup</a></i>
+  </div> 
   
     <div *ngIf="signupSuccess === 'success'" class="alert alert-success mt-3">
       Signup Successful!
@@ -27,6 +27,7 @@
     <div *ngIf="signupSuccess === 'failure'" class="alert alert-danger mt-3">
       Signup Failed. Please try again.
     </div>
+    
 
 
     
