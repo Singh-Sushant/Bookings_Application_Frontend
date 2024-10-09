@@ -1,34 +1,68 @@
+/* General styles */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Navbar/Login/Sign Up section */
 .user-circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #007bff;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .user-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: rgb(77, 77, 77);
-    border: 1px solid rgb(77, 77, 77);
-    border-radius: 4px;
-   
-    z-index: 1000;
-  }
-  
-  .menu-item {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .menu-item:hover {
-    background-color: #918f8f;
-    border: 1px solid #918f8f;
-  }
+  width: 40px;
+  height: 40px;
+  background-color: #6c757d;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.user-menu {
+  right: 0;
+  top: 100%;
+  min-width: 150px;
+  z-index: 1;
+}
+
+.menu-item {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: black;
+}
+
+.menu-item:hover {
+  background-color: #dcdcdc;
+}
+
+/* Event card styles */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #f8f9fa;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+

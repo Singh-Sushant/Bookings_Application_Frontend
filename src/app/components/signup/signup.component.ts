@@ -16,6 +16,7 @@ export class SignupComponent {
   password: string = '';
   phoneNumber: string = '';
   signupSuccess: string = '';
+  emailAlreadyTaken : boolean = false;
 
   constructor(private master: MasterService , private router : Router) {}
 
@@ -30,12 +31,19 @@ export class SignupComponent {
       response => {
         console.log('Signup successful', response);
         this.signupSuccess = 'success';
+        this.router.navigate(['/main'])
       },
       error => {
+        
         console.error('Signup failed', error);
+        if(error.message){
+          // alert("user already exists for this email")
+          this.emailAlreadyTaken = true;
+        }
         this.signupSuccess = 'failure';
       }
     );
+
   }
 
   goToLogin():void{
