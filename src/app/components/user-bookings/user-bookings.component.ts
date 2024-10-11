@@ -13,12 +13,13 @@ import { MasterService } from '../../services/master.service';
 export class UserBookingsComponent {
   master = inject(MasterService)
   userEmail : string | null = "";
-  userEventDetails:any;
+  userEventDetails:any = {};
   dataRecieved = false;
   
 
 
   ngOnInit():void{
+    this.userEventDetails = {}
     this.userEmail = localStorage.getItem('bookingEmail') ;
     this.getEventsForUser();
   }
@@ -38,14 +39,13 @@ export class UserBookingsComponent {
     var value = confirm('Do you want to cancel this booking ? ')
     if(value == true){
       this.master.cancelBooking(id).subscribe((res:any)=>{
+
         console.log(res);
-        
+        this.getEventsForUser();
       });
-      location.reload();
+
     }
-    else{
-      
-    }
+    
     
   }
 }

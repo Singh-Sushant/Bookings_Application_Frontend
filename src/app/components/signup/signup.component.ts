@@ -31,7 +31,9 @@ export class SignupComponent {
       response => {
         console.log('Signup successful', response);
         this.signupSuccess = 'success';
-        this.router.navigate(['/main'])
+        setTimeout(() => {
+          this.router.navigate(['/login'])
+        }, 1000);
       },
       error => {
         

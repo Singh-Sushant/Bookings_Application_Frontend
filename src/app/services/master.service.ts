@@ -70,7 +70,14 @@ export class MasterService {
   }
 
   cancelBooking(id:string) : Observable<any>{
-    return this.http.delete(`http://localhost:5073/api/Bookings/${id}`)
+    console.log("Guid" , id);
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    
+    return this.http.delete(`http://localhost:5073/api/Bookings/${id}` , {headers : headers})
   }
 
   updatePhone(data : any) : Observable<any>{
@@ -79,11 +86,20 @@ export class MasterService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    
-    
-
     return this.http.put(`http://localhost:5073/api/Account/updatePhone?PhoneNumber=${data.PhoneNumber}&Email=${data.Email}`, data, { headers: headers , responseType : 'text'})
       
+  }
+
+  updatePassword(updateData : any):Observable<any>{
+    console.log(updateData);
+    
+
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+      return this.http.put(`http://localhost:5073/api/Account/updatePassword`, updateData , {headers : headers , responseType  :'text' });
   }
 
 }

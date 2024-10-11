@@ -78,8 +78,8 @@ export class MainPageComponent implements OnInit {
     this.showUserMenu = !this.showUserMenu;
   }
 
-  goToChangePhoneNumber(): void {
-    this.router.navigate(['/change-phone-number']);
+  goToProfile(): void {
+    this.router.navigate(['/profile']);
   }
 
 

@@ -5,7 +5,9 @@ import { UserBookingsComponent } from './components/user-bookings/user-bookings.
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AuthGuard } from './auth.guard';
-import { ChangePhoneNumberComponent } from './components/change-phone-number/change-phone-number.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ChangePhoneComponent } from './components/change-phone/change-phone.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
@@ -14,7 +16,9 @@ const routes: Routes = [
   { path: 'userEvents', component: UserBookingsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'change-phone-number', component: ChangePhoneNumberComponent },  // wildcard route for any unknown routes, redirects to main page
+  { path: 'profile', component: ProfileComponent }, 
+  {path : 'change-password' , component:ChangePasswordComponent},
+  {path : 'change-phone' , component : ChangePhoneComponent}, // wildcard route for any unknown routes, redirects to main page
   { path: '**', redirectTo: '/main' }
 ];
 

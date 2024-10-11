@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangePhoneNumberComponent } from './change-phone-number.component';
+import { ProfileComponent } from './profile.component';
 
 describe('ChangePhoneNumberComponent', () => {
-  let component: ChangePhoneNumberComponent;
-  let fixture: ComponentFixture<ChangePhoneNumberComponent>;
+  let component: ProfileComponent;
+  let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChangePhoneNumberComponent]
+      imports: [ProfileComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChangePhoneNumberComponent);
+    fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

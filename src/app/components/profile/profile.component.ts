@@ -6,13 +6,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MasterService } from '../../services/master.service';
 
 @Component({
-  selector: 'app-change-phone-number',
+  selector: 'app-profile',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './change-phone-number.component.html',
-  styleUrls: ['./change-phone-number.component.css']
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
-export class ChangePhoneNumberComponent implements OnInit {
+export class ProfileComponent implements OnInit {
   phoneNumber: string = '';
   
   alertMessage: string = '';
@@ -49,6 +49,8 @@ export class ChangePhoneNumberComponent implements OnInit {
       PhoneNumber: this.phoneNumber,
       Email: email
     };
+
+    
    
     this.master.updatePhone(updateData)
       .subscribe(
@@ -68,6 +70,15 @@ export class ChangePhoneNumberComponent implements OnInit {
   }
 
     
+
+  goToChangePhone(){
+    this.router.navigate(['/change-phone'])
+  }
+  
+  goToChangePassword(){
+
+    this.router.navigate(['/change-password'])
+  }
 
 
 
