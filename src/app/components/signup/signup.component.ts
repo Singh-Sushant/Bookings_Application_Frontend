@@ -26,6 +26,10 @@ export class SignupComponent {
       password: this.password,
       phoneNumber: this.phoneNumber
     };
+    if(this.phoneNumber.length != 10){
+      alert("Cannot Signup Phone number not correct");
+      return;
+    }
 
     this.master.registerUser(signupData).subscribe(
       response => {
@@ -38,11 +42,14 @@ export class SignupComponent {
       error => {
         
         console.error('Signup failed', error);
-        if(error.message){
-          // alert("user already exists for this email")
-          this.emailAlreadyTaken = true;
+        if(error.error.message){
+          this.signupSuccess = "emailTaken"
+          return
         }
-        this.signupSuccess = 'failure';
+        else{
+
+          this.signupSuccess = 'failure';
+        }
       }
     );
 

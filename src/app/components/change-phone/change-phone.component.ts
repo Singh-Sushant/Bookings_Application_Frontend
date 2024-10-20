@@ -57,10 +57,10 @@ export class ChangePhoneComponent {
         (response) => {
           this.setAlert('Phone number updated successfully', 'success');
           localStorage.setItem('bookingPhoneNumber', this.phoneNumber);
-          // Optionally redirect after a delay
+          
           setTimeout(() => {
             this.router.navigate(['/']);
-          }, 1000);  // Redirect after 2 seconds
+          }, 1000);  // Redirect after 1 seconds
         },
         (error : any) => {
           console.error('Error updating phone number:', error);

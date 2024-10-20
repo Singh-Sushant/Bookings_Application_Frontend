@@ -1,9 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* General styles */
 body {
   font-family: 'Roboto', sans-serif;
 }
 
 /* Navbar/Login/Sign Up section */
+
+
 .user-circle {
   width: 40px;
   height: 40px;

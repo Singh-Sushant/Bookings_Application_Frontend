@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { IEvent } from '../../model/interface/event';
+import { IEvent, ITicketType } from '../../model/interface/event';
 import { MasterService } from '../../services/master.service';
 import { Router } from '@angular/router';
 import { DataSharingService } from '../../services/data-sharing.service';
@@ -24,14 +24,17 @@ export class MainPageComponent implements OnInit {
 
   loader : boolean = true;
   allEvents : IEvent[] = []
-
+  currentImageIndex: number[] = []; 
   userInitial: string = '';
   showUserMenu: boolean = false;
 
   ngOnInit(): void {
     this.master.getAllEvents().subscribe((res : IEvent[])=>{
+      console.log(res);
+      
       this.allEvents = res
-      this.loader = false
+      this.currentImageIndex = new Array(res.length).fill(0); // Initializes to 0 for each event
+      this.loader = false;
     },error=>{
       alert("problem with apI")
       this.loader = false;
@@ -47,18 +50,40 @@ export class MainPageComponent implements OnInit {
     
   }
 
+  prevImage(index: number) {
+    this.currentImageIndex[index] = (this.currentImageIndex[index] - 1 + this.allEvents[index].eventImage.length) % this.allEvents[index].eventImage.length;
+  }
+
+  // Changed: Modified nextImage method to take an index
+  nextImage(index: number) {
+    this.currentImageIndex[index] = (this.currentImageIndex[index] + 1) % this.allEvents[index].eventImage.length;
+  }
 
   navigateToUrl(){
     this.router.navigate(['/userEvents'])
   }
 
 
-  onBookClicked(event : IEvent){
-    this.dataSharing.sharedData = event;
-    this.router.navigate(['/booking'])
+
+
+  onBookClicked(){
     
   }
+
+
+
+  // onBookClicked(event : IEvent){
+  //   this.dataSharing.sharedData = event;
+  //   this.router.navigate(['/booking'])
+    
+  // }
   
+  // onBookClicked(ticketType: ITicketType) {
+  //   this.dataSharing.sharedData = ticketType; // Store the specific ticket type
+  //   this.router.navigate(['/booking']);
+  // }
+
+
   goToSignup():void{
     this.router.navigate(['/signup'])
   }

@@ -1,37 +1,43 @@
-
-
-
-@if(userEventDetails){
-    <div class="container mt-5">
-        <h2 class="text-center">Booking List</h2>
-        
-        <div *ngFor="let booking of userEventDetails" class="card mb-3">
-          <div class="card-header d-flex justify-content-between">
-            <h5>{{ booking.username }}'s Booking</h5>
-            <div class="btn btn-danger" (click)="cancelBooking(booking.id)">Cancel Booking</div>
+@if(userEventDetails) {
+  <div class="container mx-auto mt-10 px-4">
+    <h2 class="text-3xl font-bold text-center mb-8">Booking List</h2>
+    
+    <div class="space-y-6">
+      @for (booking of userEventDetails; track booking.id) {
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+          <div class="bg-gray-100 px-6 py-4 flex justify-between items-center">
+            <h5 class="text-xl font-semibold">{{ booking.username }}'s Booking</h5>
+            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out" (click)="cancelBooking(booking.id)">
+              Cancel Booking
+            </button>
           </div>
-          <div class="card-body">
-            <p><strong>Email:</strong> {{ booking.email }}</p>
-            <p><strong>Phone Number:</strong> {{ booking.phoneNumber }}</p>
-            <p><strong>Number of Tickets:</strong> {{ booking.numberOfTickets }}</p>
-            <p><strong>Total Price:</strong> Rs.{{ booking.totalPrice }}</p>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <p><strong class="font-medium">Email:</strong> {{ booking.email }}</p>
+              <p><strong class="font-medium">Phone Number:</strong> {{ booking.phoneNumber }}</p>
+              <p><strong class="font-medium">Number of Tickets:</strong> {{ booking.numberOfTickets }}</p>
+              <p><strong class="font-medium">Total Price:</strong> Rs.{{ booking.totalPrice }}</p>
+            </div>
             
-            <h6>Event Details:</h6>
-            <ul>
-              <li><strong>Name:</strong> {{ booking.event.name }}</li>
-              <li><strong>Category:</strong> {{ booking.event.category }}</li>
-              <li><strong>Date & Time:</strong> {{ booking.event.dateTime | date:'fullDate' }} at {{ booking.event.dateTime | date:'shortTime' }}</li>
-              <li><strong>Venue:</strong> {{ booking.event.venue }}</li>
-              <li><strong>Artist:</strong> {{ booking.event.artist }}</li>
-              <li><strong>Description:</strong> {{ booking.event.description }}</li>
+            <h6 class="text-lg font-semibold mt-6 mb-3">Event Details:</h6>
+            <ul class="space-y-2">
+              <li><strong class="font-medium">Name:</strong> {{ booking.event.name }}</li>
+              <li><strong class="font-medium">Category:</strong> {{ booking.event.category }}</li>
+              <li><strong class="font-medium">Date & Time:</strong> {{ booking.event.dateTime | date:'fullDate' }} at {{ booking.event.dateTime | date:'shortTime' }}</li>
+              <li><strong class="font-medium">Venue:</strong> {{ booking.event.venue }}</li>
+              <li><strong class="font-medium">Artist:</strong> {{ booking.event.artist }}</li>
+              <li><strong class="font-medium">Description:</strong> {{ booking.event.description }}</li>
             </ul>
           </div>
         </div>
-      </div>
-}
-@else {
-  <div class=" d-flex justify-content-center align-items-center flex-column" style="height: 500px;" >
-    <h2 class="text-center ">No bookings available</h2>
-   <i> <p>Book an event  <a href="/main">here</a></p></i>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="flex justify-center items-center flex-col h-screen">
+    <h2 class="text-3xl font-bold text-center mb-4">No bookings available</h2>
+    <p class="text-gray-600 italic">
+      Book an event <a href="/main" class="text-blue-600 hover:underline">here</a>
+    </p>
   </div>
 }

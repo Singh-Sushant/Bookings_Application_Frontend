@@ -12,6 +12,7 @@ export class MasterService {
   constructor(private http : HttpClient) { }
 
   getAllEvents():Observable<IEvent[]>{
+    
     return this.http.get<IEvent[]>("http://localhost:5073/api/Events")
   }
 
