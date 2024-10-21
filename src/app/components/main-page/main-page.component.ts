@@ -28,8 +28,11 @@ export class MainPageComponent implements OnInit {
   userInitial: string = '';
   showUserMenu: boolean = false;
 
+  category = '';
+  sortOrder = '';
+
   ngOnInit(): void {
-    this.master.getAllEvents().subscribe((res : IEvent[])=>{
+    this.master.getAllEvents(this.category , this.sortOrder).subscribe((res : IEvent[])=>{
       console.log(res);
       
       this.allEvents = res
@@ -49,6 +52,51 @@ export class MainPageComponent implements OnInit {
     }
     
   }
+
+  filterEvents(category: string) {
+    this.category = category;
+    this.master.getAllEvents(this.category , this.sortOrder).subscribe((res : IEvent[])=>{
+      console.log(res);
+      
+      this.allEvents = res
+      this.currentImageIndex = new Array(res.length).fill(0); // Initializes to 0 for each event
+      this.loader = false;
+    },error=>{
+      alert("problem with apI")
+      this.loader = false;
+    });
+
+    if(localStorage.getItem('jwtToken') != null){
+      this.loggedIn = true;
+      const userEmail= localStorage.getItem('bookingEmail');
+      if (userEmail) {
+        this.userInitial = userEmail.charAt(0).toUpperCase();
+      }
+    }
+  }
+
+  sortEvents(sortOrder: string) {
+    this.sortOrder = sortOrder;
+    this.master.getAllEvents(this.category , this.sortOrder).subscribe((res : IEvent[])=>{
+      console.log(res);
+      
+      this.allEvents = res
+      this.currentImageIndex = new Array(res.length).fill(0); // Initializes to 0 for each event
+      this.loader = false;
+    },error=>{
+      alert("problem with apI")
+      this.loader = false;
+    });
+
+    if(localStorage.getItem('jwtToken') != null){
+      this.loggedIn = true;
+      const userEmail= localStorage.getItem('bookingEmail');
+      if (userEmail) {
+        this.userInitial = userEmail.charAt(0).toUpperCase();
+      }
+    }
+  }
+
 
   prevImage(index: number) {
     this.currentImageIndex[index] = (this.currentImageIndex[index] - 1 + this.allEvents[index].eventImage.length) % this.allEvents[index].eventImage.length;

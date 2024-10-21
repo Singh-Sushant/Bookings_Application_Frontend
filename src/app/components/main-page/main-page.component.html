@@ -25,6 +25,38 @@
   </div>
 </div>
 <h1 class="text-center text-2xl font-bold mt-6 mb-10">Event Listings</h1>
+
+
+
+  <div class="space-y-4 m-5 flex flex-col">
+    <!-- Category Filter Buttons -->
+    <div class="inline-flex rounded-md" role="group">
+        <button (click)="filterEvents('')" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
+            All Categories
+        </button>
+        <button (click)="filterEvents('music')" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
+            Music
+        </button>
+        <button (click)="filterEvents('technology')" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
+            Technology
+        </button>
+        <button (click)="filterEvents('food')" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
+            Food
+        </button>
+    </div>
+  
+    <!-- Sorting Buttons -->
+    <div class="inline-flex rounded-md " role="group">
+        <button (click)="sortEvents('asc')" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700">
+            Sort Ascending
+        </button>
+        <button (click)="sortEvents('desc')" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700">
+            Sort Descending
+        </button>
+    </div>
+  </div>
+
+
 <div *ngIf="loader" class="text-center my-8">
   <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
 </div>

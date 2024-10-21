@@ -11,9 +11,9 @@ export class MasterService {
 
   constructor(private http : HttpClient) { }
 
-  getAllEvents():Observable<IEvent[]>{
+  getAllEvents(category : string , sortOrder : string):Observable<IEvent[]>{
     
-    return this.http.get<IEvent[]>("http://localhost:5073/api/Events")
+    return this.http.get<IEvent[]>(`http://localhost:5073/api/Events?category=${category}&sortOrder=${sortOrder}`)
   }
 
 
