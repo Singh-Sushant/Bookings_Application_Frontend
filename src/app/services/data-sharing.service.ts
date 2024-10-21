@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { IEvent } from '../model/interface/event';
+import { IEvent, ITicketType } from '../model/interface/event';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataSharingService {
-  sharedData !: IEvent
+  sharedEventData !: IEvent 
+  sharedTicketData !: ITicketType 
 
 }

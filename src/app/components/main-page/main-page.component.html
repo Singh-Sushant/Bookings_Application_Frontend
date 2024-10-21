@@ -24,7 +24,6 @@
     </div>
   </div>
 </div>
-
 <h1 class="text-center text-2xl font-bold mt-6 mb-10">Event Listings</h1>
 <div *ngIf="loader" class="text-center my-8">
   <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
@@ -65,6 +64,7 @@
           <li><span class="font-semibold">Total Tickets:</span> {{ item.totalTickets }}</li>
         </ul>
       </div>
+     
     
       <div class="bg-gray-100 px-6 py-4">
         <!-- Changed: Loop through ticket types and create a button for each -->
@@ -75,7 +75,7 @@
             <!-- Changed: Small book button for each ticket type -->
             <button *ngIf="ticketType.availableNoOfTickets > 0" 
                     class="bg-blue-600 text-white px-2 py-1 text-sm rounded-md hover:bg-blue-700 transition-colors duration-300" 
-                    (click)="onBookClicked()">Book</button>
+                    (click)="onBookClicked(ticketType , item)">Book</button>
           </div>
         </div>
       </div>

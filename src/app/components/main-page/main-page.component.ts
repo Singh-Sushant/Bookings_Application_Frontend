@@ -1,14 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { IEvent, ITicketType } from '../../model/interface/event';
 import { MasterService } from '../../services/master.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { DataSharingService } from '../../services/data-sharing.service';
 import { provideRouter } from '@angular/router';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule , RouterModule],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })
@@ -66,22 +66,19 @@ export class MainPageComponent implements OnInit {
 
 
 
-  onBookClicked(){
+
+
+
+  onBookClicked(ticketType: ITicketType , event : IEvent){
+   
     
+    this.dataSharing.sharedEventData = event
+    this.dataSharing.sharedTicketData = ticketType 
+    this.router.navigate(['/booking'])
+
   }
 
 
-
-  // onBookClicked(event : IEvent){
-  //   this.dataSharing.sharedData = event;
-  //   this.router.navigate(['/booking'])
-    
-  // }
-  
-  // onBookClicked(ticketType: ITicketType) {
-  //   this.dataSharing.sharedData = ticketType; // Store the specific ticket type
-  //   this.router.navigate(['/booking']);
-  // }
 
 
   goToSignup():void{
@@ -104,6 +101,8 @@ export class MainPageComponent implements OnInit {
   }
 
   goToProfile(): void {
+    
+    
     this.router.navigate(['/profile']);
   }
 

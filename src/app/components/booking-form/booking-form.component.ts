@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { IEvent } from '../../model/interface/event';
+import { IEvent, ITicketType } from '../../model/interface/event';
 import { DataSharingService } from '../../services/data-sharing.service';
 import { CommonModule } from '@angular/common';
 import { MasterService } from '../../services/master.service';
@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class BookingFormComponent implements OnInit{
   eventDetails !: IEvent
+  ticketDetails !: ITicketType
   master = inject(MasterService)
 
   username: string = ''; // Input for user's name
@@ -46,7 +47,12 @@ export class BookingFormComponent implements OnInit{
     this.localStorageValues.bookingPhone = localStorage.getItem('bookingPhoneNumber')
 
 
-    this.eventDetails = this.dataSharing.sharedData
+    this.eventDetails = this.dataSharing.sharedEventData
+    this.ticketDetails = this.dataSharing.sharedTicketData
+
+    console.log(this.eventDetails , this.ticketDetails);
+    
+
     // console.log(this.eventDetails);    
     this.eventId = this.eventDetails.id
 
@@ -58,7 +64,7 @@ export class BookingFormComponent implements OnInit{
 
 
   calculatePrice(){
-    this.totalPriceToDisplay = this.eventDetails.ticketPrice*this.numberOfTickets;
+    this.totalPriceToDisplay = this.ticketDetails.price * this.numberOfTickets;
   }
 
 
@@ -75,7 +81,7 @@ export class BookingFormComponent implements OnInit{
       email: localStorage.getItem('bookingEmail'),                        
       numberOfTickets: this.numberOfTickets, 
       phoneNumber : localStorage.getItem('bookingPhoneNumber'),           
-      totalPrice : this.numberOfTickets*this.eventDetails.ticketPrice,
+      totalPrice : this.numberOfTickets*this.ticketDetails.price,
       eventId : this.eventId
     };
     
