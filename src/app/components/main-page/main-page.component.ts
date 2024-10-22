@@ -31,7 +31,14 @@ export class MainPageComponent implements OnInit {
   category = '';
   sortOrder = '';
 
+
+
   ngOnInit(): void {
+    this.fetchAllEvents();
+    
+  }
+
+  fetchAllEvents():void{
     this.master.getAllEvents(this.category , this.sortOrder).subscribe((res : IEvent[])=>{
       console.log(res);
       
@@ -50,51 +57,16 @@ export class MainPageComponent implements OnInit {
         this.userInitial = userEmail.charAt(0).toUpperCase();
       }
     }
-    
   }
 
   filterEvents(category: string) {
     this.category = category;
-    this.master.getAllEvents(this.category , this.sortOrder).subscribe((res : IEvent[])=>{
-      console.log(res);
-      
-      this.allEvents = res
-      this.currentImageIndex = new Array(res.length).fill(0); // Initializes to 0 for each event
-      this.loader = false;
-    },error=>{
-      alert("problem with apI")
-      this.loader = false;
-    });
-
-    if(localStorage.getItem('jwtToken') != null){
-      this.loggedIn = true;
-      const userEmail= localStorage.getItem('bookingEmail');
-      if (userEmail) {
-        this.userInitial = userEmail.charAt(0).toUpperCase();
-      }
-    }
+    this.fetchAllEvents();
   }
 
   sortEvents(sortOrder: string) {
     this.sortOrder = sortOrder;
-    this.master.getAllEvents(this.category , this.sortOrder).subscribe((res : IEvent[])=>{
-      console.log(res);
-      
-      this.allEvents = res
-      this.currentImageIndex = new Array(res.length).fill(0); // Initializes to 0 for each event
-      this.loader = false;
-    },error=>{
-      alert("problem with apI")
-      this.loader = false;
-    });
-
-    if(localStorage.getItem('jwtToken') != null){
-      this.loggedIn = true;
-      const userEmail= localStorage.getItem('bookingEmail');
-      if (userEmail) {
-        this.userInitial = userEmail.charAt(0).toUpperCase();
-      }
-    }
+    this.fetchAllEvents();
   }
 
 
