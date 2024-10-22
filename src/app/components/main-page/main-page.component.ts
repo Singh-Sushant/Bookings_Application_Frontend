@@ -5,10 +5,12 @@ import { Router, RouterModule } from '@angular/router';
 import { DataSharingService } from '../../services/data-sharing.service';
 import { provideRouter } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [CommonModule , RouterModule],
+  imports: [CommonModule , RouterModule , FormsModule, ReactiveFormsModule],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })
@@ -27,19 +29,29 @@ export class MainPageComponent implements OnInit {
   currentImageIndex: number[] = []; 
   userInitial: string = '';
   showUserMenu: boolean = false;
-
+  searchTerm: string = ''
   category = '';
   sortOrder = '';
+  searchControl = new FormControl('');
 
 
 
   ngOnInit(): void {
+
     this.fetchAllEvents();
+    
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300), // Wait for 300ms pause in typing
+      distinctUntilChanged() // Only emit if value is different from previous
+    ).subscribe(value => {
+      this.searchTerm = value || '';
+      this.fetchAllEvents();
+    });
     
   }
 
   fetchAllEvents():void{
-    this.master.getAllEvents(this.category , this.sortOrder).subscribe((res : IEvent[])=>{
+    this.master.getAllEvents(this.category , this.sortOrder , this.searchTerm).subscribe((res : IEvent[])=>{
       console.log(res);
       
       this.allEvents = res
@@ -68,6 +80,10 @@ export class MainPageComponent implements OnInit {
     this.sortOrder = sortOrder;
     this.fetchAllEvents();
   }
+
+
+
+
 
 
   prevImage(index: number) {
